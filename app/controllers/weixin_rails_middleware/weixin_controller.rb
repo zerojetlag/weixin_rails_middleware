@@ -43,9 +43,9 @@ module WeixinRailsMiddleware
       end
 
       def set_weixin_message
-        param_xml = request.body.read
+        param_xml = params['xml']
         if @is_encrypt
-          hash      = MultiXml.parse(param_xml)['xml']
+          hash      = param_xml
           @body_xml = OpenStruct.new(hash)
           param_xml = Prpcrypt.decrypt(@weixin_public_account.aes_key,
                                         @body_xml.Encrypt,

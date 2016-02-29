@@ -23,7 +23,7 @@ module WeixinRailsMiddleware
     end
 
     def self.factory(xml)
-      hash = MultiXml.parse(xml)['xml']
+      hash = xml
       case hash['MsgType']
       when 'text'
         TextMessage.new(hash)
